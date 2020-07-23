@@ -52,10 +52,10 @@ public class ClienteHTTP {
 
                     in.close();
                     urlConnection.disconnect();
-                    if (response.toString().equals("true")) {
-                        client.Retorna(response.toString());
-                    } else {
+                    if (response.toString().equals("false")) {
                         client.Falha(response.toString());
+                    } else {
+                        client.Retorna(response.toString());
                     }
                     System.out.println("Performing operation in Asynchronous Task");
                 } catch (MalformedURLException ex) {

@@ -5,17 +5,14 @@
  */
 package servidor2.cliente;
 
-import io.jsonwebtoken.Jwt;
-
 /**
- *
  * @author maico
  */
 public class Usuario {
 
     private String nome;
     private String senha;
-    private Jwt jwt;
+    private String jwt;
     private String salt;
 
     public Usuario(String nome, String senha, String salt) {
@@ -44,7 +41,7 @@ public class Usuario {
         return salt;
     }
 
-    public void setJwt(Jwt jwt) {
-        this.jwt = jwt;
+    public void setJwt(String jwt) {
+            this.jwt = jwt;
     }
 }

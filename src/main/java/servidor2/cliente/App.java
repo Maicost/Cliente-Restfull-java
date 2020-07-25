@@ -21,7 +21,8 @@ public class App {
                 dsh.setVisible(true);
                 Usuario usuario = new Usuario();
                 usuario.setJwt(response);
-                System.out.println("Logado: " + response);
+                dsh.usuario = usuario;
+                System.out.println("Logado: " + usuario.toString());
             }
 
             @Override

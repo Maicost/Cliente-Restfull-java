@@ -5,13 +5,17 @@
  */
 package servidor2.cliente;
 
+import javax.swing.DefaultListModel;
+import com.google.gson.Gson;
+
 /**
  *
  * @author maico
  */
 public class Dashboard extends javax.swing.JFrame {
 
-    public String info = "sem dados!";
+    public Usuario usuario;
+    
     /**
      * Creates new form dashboard
      */
@@ -29,14 +33,13 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        AreaTexto = new javax.swing.JTextField();
         Atualizar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Lista = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Informações pessoais");
-
-        AreaTexto.setText("sem dados!");
 
         Atualizar.setText("Atualizar");
         Atualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -45,6 +48,13 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        Lista.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(Lista);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -52,41 +62,38 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jLabel1))
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(Atualizar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(AreaTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)))
-                .addGap(33, 33, 33))
+                        .addGap(94, 94, 94)
+                        .addComponent(Atualizar)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Atualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AreaTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                .addGap(89, 89, 89))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarActionPerformed
-
-        AreaTexto.setText("");
+        DefaultListModel lista;
+        lista = new DefaultListModel();
+        lista.addElement(usuario.getNome());
         
-        String[] content = info.split(",");
-        for(int i=0;content[i] != ""; i++){
-            AreaTexto.setText(AreaTexto.getText()+"\n"+content[i]);
-        }
         
-
+        
+        Lista.setModel(lista);
     }//GEN-LAST:event_AtualizarActionPerformed
 
     /**
@@ -124,8 +131,9 @@ public class Dashboard extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AreaTexto;
     private javax.swing.JButton Atualizar;
+    private javax.swing.JList<String> Lista;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

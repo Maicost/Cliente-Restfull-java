@@ -1,14 +1,15 @@
 package servidor2.cliente;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 /**
  * @author maico
  */
-
 public class App {
 
+    public String token;
     String statusLogin;
 
     public void Login(String credenciais) throws IOException {
@@ -17,12 +18,19 @@ public class App {
         ClienteHTTP.Logar(credenciais, new ICliente<String>() {
             @Override
             public void Retorna(String response) {
-                Dashboard dsh = new Dashboard();
-                dsh.setVisible(true);
-                Usuario usuario = new Usuario();
-                usuario.setJwt(response);
-                dsh.usuario = usuario;
-                System.out.println("Logado: " + usuario.toString());
+                Login login = new Login();
+
+                Gson gson = new Gson();
+
+                login = gson.fromJson(response, Login.class);
+
+                if (login.success) {
+                    token = login.token;
+                    ObterInfo();
+                    Dashboard dsh = new Dashboard();
+                    dsh.setVisible(true);
+
+                }
             }
 
             @Override
@@ -32,8 +40,8 @@ public class App {
         });
         System.out.println("Executado");
     }
-    
-    public void InsertUser(String credenciais) throws IOException{
+
+    public void InsertUser(String credenciais) throws IOException {
         ClienteHTTP.InsertUser(credenciais, new ICliente<String>() {
             @Override
             public void Retorna(String response) {
@@ -44,7 +52,22 @@ public class App {
             public void Falha(String respose) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
-            
+
+        });
+    }
+    
+    public void ObterInfo(){
+         ClienteHTTP.ObterInfo(token, new ICliente<String>() {
+            @Override
+            public void Retorna(String response) {
+                System.out.println(response);
+            }
+
+            @Override
+            public void Falha(String respose) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
         });
     }
 

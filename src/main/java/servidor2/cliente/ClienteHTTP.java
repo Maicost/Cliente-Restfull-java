@@ -115,7 +115,50 @@ public class ClienteHTTP {
         }).start();
     }
 
-    public static void ObterInfo() {
-    }
+    public static void ObterInfo(String token, ICliente client) {
 
+        new Thread(new Runnable() {
+
+            public void run() {
+
+                try {
+                    URL url = new URL("http://localhost:8080/Servidor2/resources/generic/info");
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection(); //abre conexão
+
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setRequestProperty("Content-type", "application/json");
+                    urlConnection.setDoOutput(true); //indica que irá enviar arquivo
+                    PrintStream printStream = new PrintStream(urlConnection.getOutputStream());
+                    printStream.println("{\"token\":\"" + token + "\"}");
+
+                    urlConnection.connect();
+
+                    InputStream inputStream;
+                    inputStream = urlConnection.getInputStream();
+
+                    BufferedReader in = new BufferedReader(
+                            new InputStreamReader(inputStream));
+
+                    StringBuilder response = new StringBuilder();
+                    String currentLine;
+
+                    while ((currentLine = in.readLine()) != null) {
+                        response.append(currentLine);
+                    }
+
+                    in.close();
+                    urlConnection.disconnect();
+
+                    client.Retorna(response.toString());
+                    
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(ClienteHTTP.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClienteHTTP.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        }
+        ).start();
+    }
 }

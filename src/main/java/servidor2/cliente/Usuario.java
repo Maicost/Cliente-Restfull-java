@@ -44,4 +44,9 @@ public class Usuario {
     public void setJwt(String jwt) {
             this.jwt = jwt;
     }
+    
+    @Override
+    public String toString(){
+    return ""+this.nome+" "+this.jwt;
+    }
 }

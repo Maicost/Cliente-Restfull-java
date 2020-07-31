@@ -133,7 +133,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void CadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroActionPerformed
         
         Cadastro cadastro = new Cadastro();
-        cadastro.setVisible(true);        
+        cadastro.setVisible(true);     
     }//GEN-LAST:event_CadastroActionPerformed
 
     private void ConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfigActionPerformed

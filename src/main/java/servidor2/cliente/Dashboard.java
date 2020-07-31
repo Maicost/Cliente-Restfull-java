@@ -15,7 +15,8 @@ import com.google.gson.Gson;
 public class Dashboard extends javax.swing.JFrame {
 
     public Usuario usuario;
-    
+    public String token, id;
+
     /**
      * Creates new form dashboard
      */
@@ -48,11 +49,6 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        Lista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(Lista);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -80,7 +76,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(Atualizar)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,10 +85,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarActionPerformed
         DefaultListModel lista;
         lista = new DefaultListModel();
-        lista.addElement(usuario.getNome());
-        
-        
-        
+        lista.addElement(id);
         Lista.setModel(lista);
     }//GEN-LAST:event_AtualizarActionPerformed
 

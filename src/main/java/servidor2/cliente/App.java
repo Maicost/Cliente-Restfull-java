@@ -11,6 +11,7 @@ public class App {
 
     public String token;
     String statusLogin;
+    public String retorno;
 
     public void Login(String credenciais) throws IOException {
 
@@ -26,15 +27,16 @@ public class App {
 
                 if (login.success) {
                     token = login.token;
-                    ObterInfo();
                     Dashboard dsh = new Dashboard();
+                    ObterInfo(dsh);
                     dsh.setVisible(true);
-
                 }
             }
 
             @Override
             public void Falha(String respose) {
+                FalhaLogin falhaLogin = new FalhaLogin();
+                falhaLogin.setVisible(true);
                 System.out.println("Falha login: " + respose);
             }
         });
@@ -52,19 +54,20 @@ public class App {
             public void Falha(String respose) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
-
         });
     }
     
-    public void ObterInfo(){
+    public void ObterInfo(Dashboard dsh){
          ClienteHTTP.ObterInfo(token, new ICliente<String>() {
             @Override
             public void Retorna(String response) {
                 System.out.println(response);
+                dsh.id = response;
             }
 
             @Override
             public void Falha(String respose) {
+                retorno = respose;
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 

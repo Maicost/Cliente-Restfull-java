@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidor2.cliente;
+package Controller;
 
+import Model.Login;
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,16 +54,23 @@ public class ClienteHTTP {
 
                     in.close();
                     urlConnection.disconnect();
-                    if (response.toString().equals("false")) {
-                        client.Falha(response.toString());
-                    } else {
+                    
+                    Gson gson = new Gson();
+                    
+                    Login login = new Login();
+                    
+                    login = gson.fromJson(response.toString(), Login.class);
+                    System.out.println(""+login.success);
+                    
+                    if (login.success) {
                         client.Retorna(response.toString());
+                    } else {
+                        client.Falha(response.toString());
                     }
-                    System.out.println("Performing operation in Asynchronous Task");
                 } catch (MalformedURLException ex) {
-                    Logger.getLogger(ClienteHTTP.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger("erro 1"+ClienteHTTP.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
-                    Logger.getLogger(ClienteHTTP.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger("erro 2"+ClienteHTTP.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }

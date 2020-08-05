@@ -3,10 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidor2.cliente;
+package View;
 
+import Controller.App;
+import Model.Usuario;
 import java.util.ArrayList;
 import com.google.gson.Gson;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -82,7 +87,7 @@ public class TelaInicial extends javax.swing.JFrame {
                             .addComponent(Senha, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                             .addComponent(Login)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Config, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                        .addComponent(Config, javax.swing.GroupLayout.PREFERRED_SIZE, 69, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cadastro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,13 +132,18 @@ public class TelaInicial extends javax.swing.JFrame {
         
         String jsonString = gson.toJson(usuario);
         
-        clt.Login(jsonString);
+        try {
+            clt.Login(jsonString);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void CadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroActionPerformed
         
         Cadastro cadastro = new Cadastro();
-        cadastro.setVisible(true);     
+        cadastro.setVisible(true);
+        dispose();
     }//GEN-LAST:event_CadastroActionPerformed
 
     private void ConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfigActionPerformed

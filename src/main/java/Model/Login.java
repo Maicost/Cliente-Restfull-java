@@ -1,4 +1,4 @@
-package servidor2.cliente;
+package Model;
 
 public class Login {
     public String token;

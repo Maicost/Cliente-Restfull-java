@@ -3,10 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidor2.cliente;
+package View;
 
+import Controller.App;
+import Model.PasswordUtils;
+import Model.Usuario;
 import com.google.gson.Gson;
-import java.util.Arrays;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -154,7 +159,13 @@ public class Cadastro extends javax.swing.JFrame {
             
             String jsonString = gson.toJson(usuario);
             
-            app.InsertUser(jsonString);
+            try {
+                app.InsertUser(jsonString);
+            } catch (IOException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            dispose();
 
         } else {
             System.out.println("Senhas diferentes!");

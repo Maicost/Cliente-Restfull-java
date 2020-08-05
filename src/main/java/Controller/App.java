@@ -1,5 +1,9 @@
-package servidor2.cliente;
+package Controller;
 
+import Model.Login;
+import View.Dashboard;
+import View.FalhaLogin;
+import View.TelaInicial;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -75,7 +79,7 @@ public class App {
     }
 
     public static void main(String[] args) throws MalformedURLException, IOException {
-        TelaInicial login = new TelaInicial();
-        login.setVisible(true);
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.setVisible(true);
     }
 }

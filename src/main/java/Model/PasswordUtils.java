@@ -1,4 +1,4 @@
-package servidor2.cliente;
+package Model;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

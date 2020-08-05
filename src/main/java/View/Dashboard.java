@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidor2.cliente;
+package View;
 
+import Model.Usuario;
 import javax.swing.DefaultListModel;
 import com.google.gson.Gson;
 

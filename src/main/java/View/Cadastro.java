@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  */
 public class Cadastro extends javax.swing.JFrame {
 
+    public static TelaInicial telaInicial;
     /**
      * Creates new form Cadastro
      */
@@ -128,6 +129,7 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed
+        telaInicial.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_VoltarActionPerformed
 
@@ -186,6 +188,8 @@ public class Cadastro extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        telaInicial.setVisible(false);
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -203,7 +207,7 @@ public class Cadastro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -16,7 +16,8 @@ public class App {
     public String token;
     String statusLogin;
     public String retorno;
-
+    public static TelaInicial telaInicial = new TelaInicial();
+    
     public void Login(String credenciais) throws IOException {
 
         System.out.println("Fazendo login");
@@ -34,6 +35,7 @@ public class App {
                     Dashboard dsh = new Dashboard();
                     ObterInfo(dsh);
                     dsh.setVisible(true);
+                    telaInicial.dispose();
                 }
             }
 
@@ -60,9 +62,9 @@ public class App {
             }
         });
     }
-    
-    public void ObterInfo(Dashboard dsh){
-         ClienteHTTP.ObterInfo(token, new ICliente<String>() {
+
+    public void ObterInfo(Dashboard dsh) {
+        ClienteHTTP.ObterInfo(token, new ICliente<String>() {
             @Override
             public void Retorna(String response) {
                 System.out.println(response);
@@ -79,7 +81,6 @@ public class App {
     }
 
     public static void main(String[] args) throws MalformedURLException, IOException {
-        TelaInicial telaInicial = new TelaInicial();
         telaInicial.setVisible(true);
     }
 }

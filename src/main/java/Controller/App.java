@@ -23,7 +23,7 @@ public class App {
         ClienteHTTP.Logar(credenciais, new ICliente<String>() {
             @Override
             public void Retorna(String response) {
-                Login login = new Login();
+                Login login;
 
                 Gson gson = new Gson();
 

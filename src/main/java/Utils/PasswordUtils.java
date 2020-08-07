@@ -1,4 +1,4 @@
-package Controller;
+package Utils;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

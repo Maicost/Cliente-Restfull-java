@@ -6,7 +6,7 @@
 package View;
 
 import Controller.App;
-import Controller.PasswordUtils;
+import Utils.PasswordUtils;
 import Model.Usuario;
 import com.google.gson.Gson;
 import java.io.IOException;
